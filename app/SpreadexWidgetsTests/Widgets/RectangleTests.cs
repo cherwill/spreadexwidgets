@@ -18,16 +18,4 @@ public class RectangleTests
     {
         Rectangle rectangle = new(0, 0, 0, -1);
     }
-
-    [TestMethod]
-
-    public void WhenGetDescriptionIsCalled_ThenReturnsValidDescription()
-    {
-        Rectangle rectangle = new(5, 6, 7, 8);
-
-        string expected = "Rectangle (5,6) width=7 height=8";
-        string actual = rectangle.ToString();
-
-        Assert.AreEqual(expected, actual);
-    }
 }

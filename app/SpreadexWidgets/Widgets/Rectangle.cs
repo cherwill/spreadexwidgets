@@ -1,5 +1,4 @@
-﻿using SpreadexWidgets.Widgets;
-using System.Text;
+﻿using System.Text;
 
 namespace SpreadexWidgets.Widgets
 {
@@ -22,13 +21,7 @@ namespace SpreadexWidgets.Widgets
                 ArgumentOutOfRangeException.ThrowIfNegative(value, nameof(value));
                 height = value;
             }
-        }
 
-        public override string ToString()
-        {
-            stringBuilder.Clear();
-            stringBuilder.AppendFormat("Rectangle ({0},{1}) width={2} height={3}", XPosition, YPosition, Width, Height);
-            return stringBuilder.ToString();
         }
     }
 }

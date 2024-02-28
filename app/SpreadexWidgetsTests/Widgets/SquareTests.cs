@@ -11,16 +11,5 @@ public class SquareTests
     {
         Square square = new(0, 0, -1);
     }
-
-    [TestMethod]
-    public void WhenGetDescriptionIsCalled_ThenReturnsValidDescription()
-    {
-        Square square = new(5, 6, 7);
-
-        string expected = "Square (5,6) size=7";
-        string actual = square.ToString();
-
-        Assert.AreEqual(expected, actual);
-    }
 }
 

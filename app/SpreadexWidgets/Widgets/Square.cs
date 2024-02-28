@@ -1,5 +1,4 @@
-﻿using SpreadexWidgets.Widgets;
-using System.Text;
+﻿using System.Text;
 
 namespace SpreadexWidgets.Widgets
 {
@@ -10,13 +9,6 @@ namespace SpreadexWidgets.Widgets
         {
             this.Width = width;
             stringBuilder = new();
-        }
-
-        public override string ToString()
-        {
-            stringBuilder.Clear();
-            stringBuilder.AppendFormat("Square ({0},{1}) size={2}", XPosition, YPosition, Width);
-            return stringBuilder.ToString();
         }
     }
 }
