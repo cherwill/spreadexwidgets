@@ -41,7 +41,8 @@ namespace SpreadexWidgetsTests.Renderer
             List<Shape> shapes = new List<Shape>
             {
                 new Rectangle(1, 2, 3, 4),
-                new Square(5, 6, 7)
+                new Square(5, 6, 7),
+                new Ellipse(9, 10, 11, 12)
             };
 
             Canvas canvas = new(shapes);
