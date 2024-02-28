@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Application",
+    "Projects": [
+      {
+        "Name": "SpreadexWidgets.csproj",
+        "Action": "Start"
+      }
+    ]
+  },
+  {
+    "Name": "Tests",
+    "Projects": [
+      {
+        "Name": "..\\SpreadexWidgetsTests\\SpreadexWidgetsTests.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
