@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpreadexWidgets.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+00d625fd785e266588eef74878cc70a438c6687d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c2a9d4a336c5ba57a3262e64a6944684d98b6e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpreadexWidgets.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpreadexWidgets.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
