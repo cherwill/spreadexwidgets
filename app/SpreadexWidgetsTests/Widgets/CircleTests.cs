@@ -3,13 +3,12 @@
 namespace SpreadexWidgetsTests.Widgets;
 
 [TestClass]
-public class SquareTests
+public class CircleTests
 {
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void GivenNegativeWidth_ThenThrowsArgumentOutOfRangeException()
+    public void GivenNegativeDiameter_ThenThrowsArgumentOutOfRangeException()
     {
-        Square square = new(0, 0, -1);
+        Circle circle = new(0, 0, -1);
     }
 }
-

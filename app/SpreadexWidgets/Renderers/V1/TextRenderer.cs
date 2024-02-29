@@ -11,33 +11,33 @@ namespace SpreadexWidgets.Renderers.V1
 
         public TextRenderer()
         {
-            this.buffer = new MemoryStream(); // TODO - add limit to memory
+            this.buffer = new MemoryStream();
             DrawHeader();
         }
 
         public void DrawRectangle(Rectangle rectangle)
         {
-            var data = string.Format("Rectangle ({0},{1}) width={2} height={3}\r\n", rectangle.PositionX, rectangle.PositionY, rectangle.Width, rectangle.Height, Environment.NewLine);
+            var data = string.Format("Rectangle ({0},{1}) width={2} height={3}{4}", rectangle.PositionX, rectangle.PositionY, rectangle.Width, rectangle.Height, Environment.NewLine);
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }
         public void DrawSquare(Square square)
         {
-            var data = string.Format("Square ({0},{1}) size={2}\r\n", square.PositionX, square.PositionY, square.Width);
+            var data = string.Format("Square ({0},{1}) size={2}{3}", square.PositionX, square.PositionY, square.Width, Environment.NewLine);
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }
 
         public void DrawEllipse(Ellipse ellipse)
         {
-            var data = string.Format("Ellipse ({0},{1}) diameterH = {2} diameterV = {3}\r\n", ellipse.PositionX, ellipse.PositionY, ellipse.DiameterH, ellipse.DiameterV);
+            var data = string.Format("Ellipse ({0},{1}) diameterH = {2} diameterV = {3}{4}", ellipse.PositionX, ellipse.PositionY, ellipse.DiameterH, ellipse.DiameterV, Environment.NewLine);
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }
 
         public void DrawCircle(Circle circle)
         {
-            var data = string.Format("Circle ({0},{1}) size = {2}\r\n", circle.PositionX, circle.PositionY, circle.Diameter);
+            var data = string.Format("Circle ({0},{1}) size = {2}{3}", circle.PositionX, circle.PositionY, circle.Diameter, Environment.NewLine);
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }
@@ -47,7 +47,7 @@ namespace SpreadexWidgets.Renderers.V1
             switch (textbox.Orientation)
             {
                 case Orientation.HORIZONTAL:
-                    var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"\r\n", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text);
+                    var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"{5}", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text, Environment.NewLine);
                     byte[] bytes = Encoding.ASCII.GetBytes(data);
                     buffer.Write(bytes);
                     break;
@@ -58,7 +58,7 @@ namespace SpreadexWidgets.Renderers.V1
 
         private void DrawHeader()
         {
-            var data = string.Format("{0}\r\n", FrameProvider.CanvasHeader);
+            var data = string.Format("{0}{1}", FrameProvider.CanvasHeader, Environment.NewLine);
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }

@@ -122,11 +122,11 @@ namespace SpreadexWidgetsTests.Renderers
         private string BuildExpected(params string[] expectedShapes)
         {
             StringBuilder stringBuilder = new();
-            stringBuilder.AppendFormat("{0}\r\n", FrameProvider.CanvasHeader);
+            stringBuilder.AppendFormat("{0}{1}", FrameProvider.CanvasHeader, Environment.NewLine);
 
             foreach (string shape in expectedShapes)
             {
-                stringBuilder.AppendFormat("{0}\r\n", shape);
+                stringBuilder.AppendFormat("{0}{1}", shape, Environment.NewLine);
             }
 
             stringBuilder.Append(FrameProvider.CanvasFooter);
