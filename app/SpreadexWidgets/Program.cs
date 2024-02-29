@@ -10,7 +10,6 @@
 // then you can use that to compare the known result
 // equally, because its a byte array, it would work on ANY renderer
 
-using SpreadexWidgets.Renderer.V1;
 using SpreadexWidgets.Renderers.V1;
 using SpreadexWidgets.Widgets;
 using System.IO;
@@ -19,7 +18,7 @@ namespace SpreadexWidgets
 {
     public class Program
     {
-        public static void main(string[] args)
+        public static void Main(string[] args)
         {
             IRenderer renderer = new ConsoleRenderer();
             renderer.DrawSquare(new Square(0, 0, 100));

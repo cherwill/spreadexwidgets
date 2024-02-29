@@ -1,30 +1,19 @@
 ﻿using SpreadexWidgets.Renderers.V1;
 using SpreadexWidgets.Widgets;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 
-namespace SpreadexWidgets.Renderer.V1
+namespace SpreadexWidgets.Renderers.V1
 {
     public class ConsoleRenderer : IRenderer
     {
         private MemoryStream buffer;
-        private string canvasHeader = $"""
-            ----------------------------------------------------------------
-            Requested Drawing
-            ----------------------------------------------------------------
-
-            """;
-        private string canvasFooter = $"""
-
-            ----------------------------------------------------------------
-            """;
 
         public ConsoleRenderer()
         {
             this.buffer = new MemoryStream();
         }
-
-        public string CanvasHeader { get { return canvasHeader; } }
-
-        public string CanvasFooter { get { return canvasFooter; } }
 
         public void DrawEllipse(Ellipse ellipse)
         {
@@ -51,7 +40,11 @@ namespace SpreadexWidgets.Renderer.V1
 
         public void Render(Stream stream)
         {
-            throw new NotImplementedException();
+            //buffer.CopyTo(stream);
+
+            StreamWriter sw = new(stream);
+            sw.WriteLine("hello world");
+            stream.Position = 0;
         }
     }
 }
