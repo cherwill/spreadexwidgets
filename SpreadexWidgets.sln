@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadexWidgets", "SpreadexWidgets.csproj", "{CB114B49-8D30-483F-AAA2-DBB9504F25E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadexWidgets", "SpreadexWidgets\SpreadexWidgets.csproj", "{CB114B49-8D30-483F-AAA2-DBB9504F25E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadexWidgetsTests", "..\SpreadexWidgetsTests\SpreadexWidgetsTests.csproj", "{6CBE3B78-A8A1-4253-B783-7E7ECBEAEB6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpreadexWidgets.Tests", "SpreadexWidgets.Tests\SpreadexWidgets.Tests.csproj", "{6CBE3B78-A8A1-4253-B783-7E7ECBEAEB6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

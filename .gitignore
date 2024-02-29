@@ -48,10 +48,10 @@ Thumbs.db
 *.mov
 *.wmv
 
-app/SpreadexWidgets/.vs/
-app/SpreadexWidgets/bin/Debug/net8.0/SpreadexWidgets.deps.json
-app/SpreadexWidgets/bin/
-app/SpreadexWidgets/obj/
-app/SpreadexWidgetsTests/bin/
-app/SpreadexWidgetsTests/obj/
-app/.vs/
+SpreadexWidgets/.vs/
+SpreadexWidgets/bin/Debug/net8.0/SpreadexWidgets.deps.json
+SpreadexWidgets/bin/
+SpreadexWidgets/obj/
+SpreadexWidgetsTests/bin/
+SpreadexWidgetsTests/obj/
+.vs/
