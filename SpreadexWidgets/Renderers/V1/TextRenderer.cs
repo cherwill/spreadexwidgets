@@ -7,11 +7,13 @@ namespace SpreadexWidgets.Renderers.V1
 {
     public class TextRenderer : IRenderer, IDisposable
     {
+        private byte[] memoryReserve = new byte[5];
         private readonly Stream buffer;
 
         public TextRenderer()
         {
-            buffer = new MemoryStream();
+            // 512 used, can probably get away with 1024 bytes
+            buffer = new MemoryStream(memoryReserve);
             DrawHeader();
         }
 
@@ -74,7 +76,6 @@ namespace SpreadexWidgets.Renderers.V1
 
             buffer.Seek(0, SeekOrigin.Begin);
             buffer.CopyTo(stream);
-            stream.Seek(0, SeekOrigin.Begin);
         }
 
         public void Dispose()

@@ -22,6 +22,7 @@ namespace SpreadexWidgets
 
             using (StreamReader reader = new StreamReader(stream))
             {
+                stream.Seek(0, SeekOrigin.Begin);
                 string content = reader.ReadToEnd();
                 Console.WriteLine(content);
             }
