@@ -7,7 +7,7 @@ namespace SpreadexWidgets.Renderers.V1
 {
     public class TextRenderer : IRenderer, IDisposable
     {
-        private Stream buffer;
+        private readonly Stream buffer;
 
         public TextRenderer()
         {
