@@ -1,7 +1,4 @@
-﻿using SpreadexWidgets.Widgets;
-using System.Text;
-
-namespace SpreadexWidgets.Widgets
+﻿namespace SpreadexWidgets.Widgets
 {
     public class Ellipse : Shape
     {

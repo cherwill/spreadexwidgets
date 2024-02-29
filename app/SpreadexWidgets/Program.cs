@@ -10,6 +10,18 @@
 // then you can use that to compare the known result
 // equally, because its a byte array, it would work on ANY renderer
 
+
+// have a constructor for the textbox that has an extra argument - optional, alignment
+// extend the rectangle for the textbox
+// use the frame provider IN the renderer itself
+// add the header to the constructor,
+// add the footer to the render after it copies the buffer
+
+// add switch statement to renderTextbox for the text alignment
+// in the switch statement, if we hit DEFAULT, throw exception
+
+// change consoleRenderer to textRenderer
+
 using SpreadexWidgets.Renderers.V1;
 using SpreadexWidgets.Widgets;
 using System.IO;
@@ -20,17 +32,19 @@ namespace SpreadexWidgets
     {
         public static void Main(string[] args)
         {
-            IRenderer renderer = new ConsoleRenderer();
+            IRenderer renderer = new TextRenderer();
             renderer.DrawSquare(new Square(0, 0, 100));
 
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            stream.Seek(0, SeekOrigin.Begin);
-            byte[] readBytes = new byte[stream.Length];
-            int bytesRead = stream.Read(readBytes, 0, (int)stream.Length);
-            string text = System.Text.Encoding.ASCII.GetString(readBytes, 0, bytesRead);
-            Console.WriteLine(text);
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string content = reader.ReadToEnd();
+                Console.WriteLine(content);
+            }
+
+            Console.ReadLine();
         }
     }
 }

@@ -4,17 +4,13 @@
     "Projects": [
       {
         "Name": "SpreadexWidgets.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": ""
       }
     ]
   },
   {
     "Name": "Tests",
-    "Projects": [
-      {
-        "Name": "..\\SpreadexWidgetsTests\\SpreadexWidgetsTests.csproj",
-        "Action": "Start"
-      }
-    ]
+    "Projects": []
   }
 ]

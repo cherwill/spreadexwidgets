@@ -1,18 +1,15 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace SpreadexWidgets.Widgets
+﻿namespace SpreadexWidgets.Widgets
 {
     public class Shape
     {
         private int width;
-        public int XPosition { get; set; }
-        public int YPosition { get; set; }
+        public int PositionX { get; set; }
+        public int PositionY { get; set; }
 
-        public Shape(int xPosition, int yPosition)
+        public Shape(int positionX, int positionY)
         {
-            this.XPosition = xPosition;
-            this.YPosition = yPosition;
+            this.PositionX = positionX;
+            this.PositionY = positionY;
         }
 
         public Shape(int xPosition, int yPosition, int width) : this(xPosition, yPosition)

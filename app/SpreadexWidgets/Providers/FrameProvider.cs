@@ -6,21 +6,19 @@ using System.Threading.Tasks;
 
 namespace SpreadexWidgets.Providers
 {
-    public class FrameProvider
+    public static class FrameProvider
     {
-        private string canvasHeader = $"""
+        private static string canvasHeader = $"""
             ----------------------------------------------------------------
             Requested Drawing
             ----------------------------------------------------------------
-
             """;
-        private string canvasFooter = $"""
-
+        private static string canvasFooter = $"""
             ----------------------------------------------------------------
             """;
 
-        public string CanvasHeader { get { return canvasHeader; } }
+        public static string CanvasHeader { get { return canvasHeader; } }
 
-        public string CanvasFooter { get { return canvasFooter; } }
+        public static string CanvasFooter { get { return canvasFooter; } }
     }
 }

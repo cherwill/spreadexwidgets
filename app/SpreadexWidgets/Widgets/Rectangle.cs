@@ -4,13 +4,12 @@ namespace SpreadexWidgets.Widgets
 {
     public class Rectangle : Shape
     {
-        private StringBuilder stringBuilder;
         private int height;
         public Rectangle(int xPosition, int yPosition, int width, int height) : base(xPosition, yPosition)
         {
             this.Width = width;
             this.Height = height;
-            stringBuilder = new();
+            //stringBuilder = new();
         }
 
         public int Height
