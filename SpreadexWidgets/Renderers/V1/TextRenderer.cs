@@ -11,35 +11,31 @@ namespace SpreadexWidgets.Renderers.V1
 
         public TextRenderer()
         {
-            this.buffer = new MemoryStream();
+            buffer = new MemoryStream();
             DrawHeader();
         }
 
         public void DrawRectangle(Rectangle rectangle)
         {
             var data = string.Format("Rectangle ({0},{1}) width={2} height={3}{4}", rectangle.PositionX, rectangle.PositionY, rectangle.Width, rectangle.Height, Environment.NewLine);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            WriteStringToBuffer(data);
         }
         public void DrawSquare(Square square)
         {
             var data = string.Format("Square ({0},{1}) size={2}{3}", square.PositionX, square.PositionY, square.Width, Environment.NewLine);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            WriteStringToBuffer(data);
         }
 
         public void DrawEllipse(Ellipse ellipse)
         {
             var data = string.Format("Ellipse ({0},{1}) diameterH = {2} diameterV = {3}{4}", ellipse.PositionX, ellipse.PositionY, ellipse.DiameterH, ellipse.DiameterV, Environment.NewLine);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            WriteStringToBuffer(data);
         }
 
         public void DrawCircle(Circle circle)
         {
             var data = string.Format("Circle ({0},{1}) size = {2}{3}", circle.PositionX, circle.PositionY, circle.Diameter, Environment.NewLine);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            WriteStringToBuffer(data);
         }
 
         public void DrawTextbox(Textbox textbox)
@@ -48,8 +44,7 @@ namespace SpreadexWidgets.Renderers.V1
             {
                 case Orientation.HORIZONTAL:
                     var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"{5}", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text, Environment.NewLine);
-                    byte[] bytes = Encoding.ASCII.GetBytes(data);
-                    buffer.Write(bytes);
+                    WriteStringToBuffer(data);
                     break;
                 default:
                     throw new NotSupportedException(nameof(textbox.Orientation));
@@ -59,13 +54,16 @@ namespace SpreadexWidgets.Renderers.V1
         private void DrawHeader()
         {
             var data = string.Format("{0}{1}", FrameProvider.CanvasHeader, Environment.NewLine);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            WriteStringToBuffer(data);
         }
 
         private void DrawFooter()
         {
-            var data = FrameProvider.CanvasFooter;
+            WriteStringToBuffer(FrameProvider.CanvasFooter);
+        }
+
+        private void WriteStringToBuffer(string data)
+        {
             byte[] bytes = Encoding.ASCII.GetBytes(data);
             buffer.Write(bytes);
         }

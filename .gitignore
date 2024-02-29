@@ -52,6 +52,6 @@ SpreadexWidgets/.vs/
 SpreadexWidgets/bin/Debug/net8.0/SpreadexWidgets.deps.json
 SpreadexWidgets/bin/
 SpreadexWidgets/obj/
-SpreadexWidgetsTests/bin/
-SpreadexWidgetsTests/obj/
+SpreadexWidgets.Tests/bin/
+SpreadexWidgets.Tests/obj/
 .vs/
