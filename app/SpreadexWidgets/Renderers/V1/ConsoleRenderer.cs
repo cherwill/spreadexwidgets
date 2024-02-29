@@ -2,17 +2,18 @@
 using SpreadexWidgets.Widgets;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Text.Json;
 
 namespace SpreadexWidgets.Renderers.V1
 {
-    public class ConsoleRenderer : IRenderer
+    public class ConsoleRenderer : IRenderer, IDisposable
     {
-        private MemoryStream buffer;
+        private Stream buffer = new MemoryStream();
 
-        public ConsoleRenderer()
+        public void Dispose()
         {
-            this.buffer = new MemoryStream();
+            buffer?.Dispose();
         }
 
         public void DrawEllipse(Ellipse ellipse)
@@ -29,22 +30,27 @@ namespace SpreadexWidgets.Renderers.V1
 
         public void DrawSquare(Square square)
         {
+            StringBuilder sb = new();
+            sb.AppendFormat("Square ({0},{1}) size={2}", square.XPosition, square.YPosition, square.Width);
             using var streamWriter = new StreamWriter(buffer);
-            streamWriter.Write(square);
+            streamWriter.WriteLine(sb.ToString());
         }
 
         public void PurgeBuffer()
         {
-            buffer.Dispose();
+            buffer?.Dispose();
         }
 
         public void Render(Stream stream)
         {
-            //buffer.CopyTo(stream);
+            buffer.Seek(0, SeekOrigin.Begin);
+            buffer.CopyTo(stream);
+        }
 
-            StreamWriter sw = new(stream);
-            sw.WriteLine("hello world");
-            stream.Position = 0;
+        ~ConsoleRenderer()
+        {
+            // Finalizer to ensure proper disposal in case Dispose is not called explicitly
+            Dispose();
         }
     }
 }

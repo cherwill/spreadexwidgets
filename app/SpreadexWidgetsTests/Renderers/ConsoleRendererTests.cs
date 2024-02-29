@@ -11,7 +11,7 @@ namespace SpreadexWidgetsTests.Renderers
         [TestMethod]
         public void GivenSingleShape_ThenRenderDrawing()
         {
-            IRenderer renderer = new ConsoleRenderer();
+            renderer = new ConsoleRenderer();
             renderer.DrawSquare(new Square(0, 0, 100));
 
             using Stream stream = new MemoryStream();
