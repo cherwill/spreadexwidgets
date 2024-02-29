@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace SpreadexWidgets.Widgets
+﻿namespace SpreadexWidgets.Widgets
 {
     public class Square : Shape
     {

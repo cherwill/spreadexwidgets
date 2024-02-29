@@ -11,10 +11,15 @@ namespace SpreadexWidgetsTests.Renderers
     {
         private IRenderer renderer;
 
+        [TestInitialize]
+        public void Setup()
+        {
+            renderer = new TextRenderer();
+        }
+
         [TestMethod]
         public void GivenRectangle_ThenRenderDrawing()
         {
-            renderer = new TextRenderer();
             renderer.DrawRectangle(new Rectangle(1, 2, 3, 4));
 
             using Stream stream = new MemoryStream();
@@ -29,7 +34,6 @@ namespace SpreadexWidgetsTests.Renderers
         [TestMethod]
         public void GivenSquare_ThenRenderDrawing()
         {
-            renderer = new TextRenderer();
             renderer.DrawSquare(new Square(1, 2, 3));
 
             using Stream stream = new MemoryStream();
@@ -44,7 +48,6 @@ namespace SpreadexWidgetsTests.Renderers
         [TestMethod]
         public void GivenEllipse_ThenRenderDrawing()
         {
-            renderer = new TextRenderer();
             renderer.DrawEllipse(new Ellipse(1, 2, 3, 4));
 
             using Stream stream = new MemoryStream();
@@ -57,15 +60,41 @@ namespace SpreadexWidgetsTests.Renderers
         }
 
         [TestMethod]
+        public void GivenCircle_ThenRenderDrawing()
+        {
+            renderer.DrawCircle(new Circle(1, 2, 3));
+
+            using Stream stream = new MemoryStream();
+            renderer.Render(stream);
+
+            string expected = BuildExpected("Circle (1,2) size = 3");
+            string actual = TextFromStream(stream);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GivenTextbox_ThenRenderDrawing()
+        {
+            renderer.DrawTextbox(new Textbox(1, 2, 3, 4, "sample text"));
+
+            using Stream stream = new MemoryStream();
+            renderer.Render(stream);
+
+            string expected = BuildExpected("Textbox (1,2) width=3 height=4 text=\"sample text\"");
+            string actual = TextFromStream(stream);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void GivenMultipleShapes_ThenRenderDrawing()
         {
-            renderer = new TextRenderer();
-
             renderer.DrawRectangle(new Rectangle(1, 2, 3, 4));
             renderer.DrawSquare(new Square(5, 6, 7));
             renderer.DrawEllipse(new Ellipse(8, 9, 10, 11));
             renderer.DrawCircle(new Circle(12, 13, 14));
-            renderer.DrawTextbox(new Textbox(15, 16, 17, 18, "hello world!"));
+            renderer.DrawTextbox(new Textbox(15, 16, 17, 18, "Hello World!"));
 
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
@@ -74,10 +103,20 @@ namespace SpreadexWidgetsTests.Renderers
                 "Square (5,6) size=7",
                 "Ellipse (8,9) diameterH = 10 diameterV = 11",
                 "Circle (12,13) size = 14",
-                "Textbox (15,16) width=17 height=18 text=\"hello world!\"");
+                "Textbox (15,16) width=17 height=18 text=\"Hello World!\"");
             string actual = TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotSupportedException))]
+        public void GivenTextboxWithUnsupportedOrientation_ThenThrowNotSupportedException()
+        {
+            renderer.DrawTextbox(new Textbox(15, 16, 17, 18, "hello world!", Orientation.VERTICAL));
+
+            using Stream stream = new MemoryStream();
+            renderer.Render(stream);
         }
 
         private string BuildExpected(params string[] expectedShapes)
@@ -100,7 +139,7 @@ namespace SpreadexWidgetsTests.Renderers
             byte[] readBytes = new byte[stream.Length];
             int bytesRead = stream.Read(readBytes, 0, (int)stream.Length);
 
-            return System.Text.Encoding.ASCII.GetString(readBytes, 0, bytesRead);
+            return Encoding.ASCII.GetString(readBytes, 0, bytesRead);
         }
     }
 }

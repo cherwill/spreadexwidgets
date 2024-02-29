@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace SpreadexWidgets.Widgets
+﻿namespace SpreadexWidgets.Widgets
 {
     public class Rectangle : Shape
     {

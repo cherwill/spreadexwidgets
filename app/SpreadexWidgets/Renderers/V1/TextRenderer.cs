@@ -1,7 +1,7 @@
 ﻿using SpreadexWidgets.Providers;
 using SpreadexWidgets.Widgets;
+using SpreadexWidgets.Enums;
 using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SpreadexWidgets.Renderers.V1
 {
@@ -44,9 +44,16 @@ namespace SpreadexWidgets.Renderers.V1
 
         public void DrawTextbox(Textbox textbox)
         {
-            var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"\r\n", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text);
-            byte[] bytes = Encoding.ASCII.GetBytes(data);
-            buffer.Write(bytes);
+            switch (textbox.Orientation)
+            {
+                case Orientation.HORIZONTAL:
+                    var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"\r\n", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text);
+                    byte[] bytes = Encoding.ASCII.GetBytes(data);
+                    buffer.Write(bytes);
+                    break;
+                default:
+                    throw new NotSupportedException(nameof(textbox.Orientation));
+            }
         }
 
         private void DrawHeader()
