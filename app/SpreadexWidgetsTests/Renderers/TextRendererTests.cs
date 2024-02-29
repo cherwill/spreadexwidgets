@@ -15,16 +15,13 @@ namespace SpreadexWidgetsTests.Renderers
         public void GivenRectangle_ThenRenderDrawing()
         {
             renderer = new TextRenderer();
-            renderer.DrawRectangle(new Rectangle(1, 2, 3,4));
+            renderer.DrawRectangle(new Rectangle(1, 2, 3, 4));
 
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
-            stream.Seek(0, SeekOrigin.Begin);
-            byte[] readBytes = new byte[stream.Length];
-            int bytesRead = stream.Read(readBytes, 0, (int)stream.Length);
 
-            string expected = "Rectangle (1,2) width=3 height=4\r\n";
-            string actual = System.Text.Encoding.ASCII.GetString(readBytes, 0, bytesRead);
+            string expected = BuildExpected("Rectangle (1,2) width=3 height=4");
+            string actual = TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -37,12 +34,9 @@ namespace SpreadexWidgetsTests.Renderers
 
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
-            stream.Seek(0, SeekOrigin.Begin);
-            byte[] readBytes = new byte[stream.Length];
-            int bytesRead = stream.Read(readBytes, 0, (int)stream.Length);
 
-            string expected = "Square (1,2) size=3\r\n";
-            string actual = System.Text.Encoding.ASCII.GetString(readBytes, 0, bytesRead);
+            string expected = BuildExpected("Square (1,2) size=3");
+            string actual = TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }

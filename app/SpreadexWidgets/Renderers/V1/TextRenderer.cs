@@ -12,7 +12,6 @@ namespace SpreadexWidgets.Renderers.V1
         public TextRenderer()
         {
             this.buffer = new MemoryStream(); // TODO - add limit to memory
-
             DrawHeader();
         }
 
