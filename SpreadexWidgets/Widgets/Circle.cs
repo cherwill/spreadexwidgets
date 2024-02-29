@@ -1,6 +1,6 @@
 ﻿namespace SpreadexWidgets.Widgets
 {
-    public class Circle : Shape
+    public class Circle : Widget
     {
         private int diameter;
         public Circle(int xPosition, int yPosition, int diameter) : base(xPosition, yPosition)

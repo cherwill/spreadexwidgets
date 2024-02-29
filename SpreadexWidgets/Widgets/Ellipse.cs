@@ -1,6 +1,6 @@
 ﻿namespace SpreadexWidgets.Widgets
 {
-    public class Ellipse : Shape
+    public class Ellipse : Widget
     {
         private int diameterH;
         private int diameterV;

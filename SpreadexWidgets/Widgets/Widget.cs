@@ -1,18 +1,18 @@
 ﻿namespace SpreadexWidgets.Widgets
 {
-    public class Shape
+    public class Widget
     {
         private int width;
         public int PositionX { get; set; }
         public int PositionY { get; set; }
 
-        public Shape(int positionX, int positionY)
+        public Widget(int positionX, int positionY)
         {
             this.PositionX = positionX;
             this.PositionY = positionY;
         }
 
-        public Shape(int xPosition, int yPosition, int width) : this(xPosition, yPosition)
+        public Widget(int xPosition, int yPosition, int width) : this(xPosition, yPosition)
         {
             this.Width = width;
         }

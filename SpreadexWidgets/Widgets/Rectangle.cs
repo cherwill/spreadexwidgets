@@ -1,6 +1,6 @@
 ﻿namespace SpreadexWidgets.Widgets
 {
-    public class Rectangle : Shape
+    public class Rectangle : Widget
     {
         private int height;
         public Rectangle(int xPosition, int yPosition, int width, int height) : base(xPosition, yPosition)

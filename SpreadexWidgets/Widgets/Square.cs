@@ -1,6 +1,6 @@
 ﻿namespace SpreadexWidgets.Widgets
 {
-    public class Square : Shape
+    public class Square : Widget
     {
         public Square(int xPosition, int yPosition, int width) : base(xPosition, yPosition, width)
         {
