@@ -1,10 +1,9 @@
-﻿using SpreadexWidgets.Providers;
-using SpreadexWidgets.Renderers.V1;
+﻿using SpreadexWidgets.Renderers.V1;
 using SpreadexWidgets.Widgets;
 using SpreadexWidgets.Enums;
-using System.Text;
+using SpreadexWidgets.Tests.Helpers;
 
-namespace SpreadexWidgetsTests.Renderers
+namespace SpreadexWidgets.Tests.Renderers
 {
     [TestClass]
     public class TextRendererTests
@@ -25,8 +24,8 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Rectangle (1,2) width=3 height=4");
-            string actual = TextFromStream(stream);
+            string expected = TextRendererTestHelper.BuildExpected("Rectangle (1,2) width=3 height=4");
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -39,8 +38,8 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Square (1,2) size=3");
-            string actual = TextFromStream(stream);
+            string expected = TextRendererTestHelper.BuildExpected("Square (1,2) size=3");
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -53,8 +52,8 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Ellipse (1,2) diameterH = 3 diameterV = 4");
-            string actual = TextFromStream(stream);
+            string expected = TextRendererTestHelper.BuildExpected("Ellipse (1,2) diameterH = 3 diameterV = 4");
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -67,8 +66,8 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Circle (1,2) size = 3");
-            string actual = TextFromStream(stream);
+            string expected = TextRendererTestHelper.BuildExpected("Circle (1,2) size = 3");
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -81,8 +80,8 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Textbox (1,2) width=3 height=4 text=\"sample text\"");
-            string actual = TextFromStream(stream);
+            string expected = TextRendererTestHelper.BuildExpected("Textbox (1,2) width=3 height=4 text=\"sample text\"");
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -99,12 +98,12 @@ namespace SpreadexWidgetsTests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = BuildExpected("Rectangle (1,2) width=3 height=4",
+            string expected = TextRendererTestHelper.BuildExpected("Rectangle (1,2) width=3 height=4",
                 "Square (5,6) size=7",
                 "Ellipse (8,9) diameterH = 10 diameterV = 11",
                 "Circle (12,13) size = 14",
                 "Textbox (15,16) width=17 height=18 text=\"Hello World!\"");
-            string actual = TextFromStream(stream);
+            string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
         }
@@ -117,29 +116,6 @@ namespace SpreadexWidgetsTests.Renderers
 
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
-        }
-
-        private string BuildExpected(params string[] expectedShapes)
-        {
-            StringBuilder stringBuilder = new();
-            stringBuilder.AppendFormat("{0}{1}", FrameProvider.CanvasHeader, Environment.NewLine);
-
-            foreach (string shape in expectedShapes)
-            {
-                stringBuilder.AppendFormat("{0}{1}", shape, Environment.NewLine);
-            }
-
-            stringBuilder.Append(FrameProvider.CanvasFooter);
-            return stringBuilder.ToString();
-        }
-
-        private string TextFromStream(Stream stream)
-        {
-            stream.Seek(0, SeekOrigin.Begin);
-            byte[] readBytes = new byte[stream.Length];
-            int bytesRead = stream.Read(readBytes, 0, (int)stream.Length);
-
-            return Encoding.ASCII.GetString(readBytes, 0, bytesRead);
         }
     }
 }

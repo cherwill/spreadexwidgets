@@ -4,7 +4,7 @@ namespace SpreadexWidgets.Widgets
 {
     public class Textbox : Rectangle
     {
-        public Textbox(int xPosition, int yPosition, int width, int height, string text, Orientation orientation = Orientation.HORIZONTAL) : base(xPosition, yPosition, width, height)
+        public Textbox(int positionX, int positionY, int width, int height, string text, Orientation orientation = Orientation.HORIZONTAL) : base(positionX, positionY, width, height)
         {
             this.Text = text;
             this.Orientation = orientation;
