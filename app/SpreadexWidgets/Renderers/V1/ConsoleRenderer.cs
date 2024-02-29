@@ -1,19 +1,15 @@
-﻿using SpreadexWidgets.Renderers.V1;
-using SpreadexWidgets.Widgets;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using SpreadexWidgets.Widgets;
 using System.Text;
-using System.Text.Json;
 
 namespace SpreadexWidgets.Renderers.V1
 {
-    public class ConsoleRenderer : IRenderer, IDisposable
+    public class ConsoleRenderer : IRenderer
     {
-        private Stream buffer = new MemoryStream();
+        private Stream buffer;
 
-        public void Dispose()
+        public ConsoleRenderer()
         {
-            buffer?.Dispose();
+            this.buffer = new MemoryStream();
         }
 
         public void DrawEllipse(Ellipse ellipse)
@@ -43,14 +39,14 @@ namespace SpreadexWidgets.Renderers.V1
 
         public void Render(Stream stream)
         {
+            // Check if the buffer is null or disposed
+            if (buffer == null || !buffer.CanWrite)
+            {
+                throw new ObjectDisposedException(nameof(buffer), "Buffer stream is closed or disposed.");
+            }
+
             buffer.Seek(0, SeekOrigin.Begin);
             buffer.CopyTo(stream);
-        }
-
-        ~ConsoleRenderer()
-        {
-            // Finalizer to ensure proper disposal in case Dispose is not called explicitly
-            Dispose();
         }
     }
 }
