@@ -12,11 +12,6 @@
             this.PositionY = positionY;
         }
 
-        public Widget(int xPosition, int yPosition, int width) : this(xPosition, yPosition)
-        {
-            this.Width = width;
-        }
-
         public int Width
         {
             get { return width; }

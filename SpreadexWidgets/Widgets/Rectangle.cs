@@ -7,7 +7,6 @@
         {
             this.Width = width;
             this.Height = height;
-            //stringBuilder = new();
         }
 
         public int Height
