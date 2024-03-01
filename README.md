@@ -44,19 +44,36 @@ My plan for the `TextRenderer` class implementation was to define a  buffer, for
 
 ### Versioning
 
-Talk about versioning for the renderers, to add a new version in future that supports more widgets
+In circumstances where we decide to make substantial changes to the Renderer, we can release a new version, V2, and mark V1 as `deprecated`.
+
+This way, we can provide new functionality for those who are looking to adopt the new changes, whilst providing support for existing users of V1 Renderers. 
 
 ### IDisposable
 
-Talk about why I used IDisposable, and what benefits it provides me with.
+Implementing IDisposable for TextRenderer seemed a justified decision, since this class makes use of a buffer to keep track of what Widgets have been drawn.
+
+IDisposable enforces us to implement Dispose, which provides us with a good opportunity to clear and reset the buffer.
 
 ### Buffer Solution
 
 Talk about why I chose to use a fixed size byte[] over a MemoryStream
 
+Initially for the TextRenderer, I chose to use a MemoryStream for the buffer. In order to reduce the memory consumption of the buffer, I decided to use a byte array instead. 
+
+When a draw request takes place, the renderer checks buffer to see if it has the capacity to draw the widget. If the request is satisfied, the data is written to the buffer, and the bufferPosition is updated accordingly. 
+
+The end result is a lightweight buffer solution with a configurable memory limit.
+
 ### Exceptions
 
 Talk about the different exceptions thrown, and how I tested them.
+
+In circumstances where there isn't enough remaining space in the buffer, an `OutOfMemoryException` is thrown, with a message that provides information for RequestedBytes vs RemainingBytes.
+
+When trying to draw a Textbox using an unsupported orientation, a `NotSupportedException` is thrown, with a message which mentions the orientation in question.
+
+Widgets provided with a negative dimension will throw a `ArgumentOutOfRangeException`, with a message which mentions the dimension is question.
+
 Also include information about the text orientation here.
 
 ## Future work
