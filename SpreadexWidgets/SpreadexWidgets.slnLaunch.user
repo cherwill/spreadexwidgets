@@ -1,0 +1,16 @@
+[
+  {
+    "Name": "Application",
+    "Projects": [
+      {
+        "Name": "SpreadexWidgets.csproj",
+        "Action": "Start",
+        "DebugTarget": ""
+      }
+    ]
+  },
+  {
+    "Name": "Tests",
+    "Projects": []
+  }
+]
