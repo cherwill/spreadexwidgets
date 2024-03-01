@@ -18,11 +18,15 @@ The base class, Widget, specifies properties such as PositionX, PositionY, and W
 
 After identifying that `Rectangle` and `Textbox` have properties in common, I decided to extend the Rectangle class in the Textbox class definition.
 
-### Rendering
+### Rendering Interface
 
 To simulate the drawing package, I decided to create the `IRenderer` interface, which made it possible to offload the responsibility of rendering Widgets to some external implementation.
 
-My plan for the `TextRenderer` class implementation was to define a  buffer, for the Widgets to be written to prior to rendering them to a Stream source. After some tweaking, I was able to get it to produce simulated renders, with abstraction in mind.
+With this design in mind, we aren't imposing too many limitations on how other renderers can be implemented.
+
+### Text Rendering
+
+My plan for the `TextRenderer` class implementation was to define a  buffer, for the Widgets to be written to prior to rendering them to a Stream source. After some tweaking, I had the Text Renderer producing simulated renders, whilst having a layer of abstraction present.
 
 #### Usage:
 
@@ -56,25 +60,17 @@ IDisposable enforces us to implement Dispose, which provides us with a good oppo
 
 ### Buffer Solution
 
-Talk about why I chose to use a fixed size byte[] over a MemoryStream
+When a draw request takes place, the renderer pre renders the shape by storing the draw data in the buffer.
 
-Initially for the TextRenderer, I chose to use a MemoryStream for the buffer. In order to reduce the memory consumption of the buffer, I decided to use a byte array instead. 
-
-When a draw request takes place, the renderer checks buffer to see if it has the capacity to draw the widget. If the request is satisfied, the data is written to the buffer, and the bufferPosition is updated accordingly. 
-
-The end result is a lightweight buffer solution with a configurable memory limit.
+For this, I chose to use a MemoryStream, as it provides dynamic sizing. 
 
 ### Exceptions
-
-Talk about the different exceptions thrown, and how I tested them.
 
 In circumstances where there isn't enough remaining space in the buffer, an `OutOfMemoryException` is thrown, with a message that provides information for RequestedBytes vs RemainingBytes.
 
 When trying to draw a Textbox using an unsupported orientation, a `NotSupportedException` is thrown, with a message which mentions the orientation in question.
 
 Widgets provided with a negative dimension will throw a `ArgumentOutOfRangeException`, with a message which mentions the dimension is question.
-
-Also include information about the text orientation here.
 
 ## Future work
 
@@ -93,8 +89,6 @@ Given the current implementation of how text is rendered, I would be interested 
 Additional widgets, such as a hexagon or triangle, with rendering support from a V2 Renderer, would be an interesting challenge for me to solve.
 
 ### Improvement to Textbox Construction
-
-Talk about how you would consider using a builder, or config object, to make it more convenient to construct
 
 After spending some time reflecting on my work, the Textbox constructor looks like it accepts too many arguments. I would be interested in tidying this up by exploring alternative methods of initializing the object. 
 
