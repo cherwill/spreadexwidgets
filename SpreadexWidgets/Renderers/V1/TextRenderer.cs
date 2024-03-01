@@ -7,12 +7,11 @@ namespace SpreadexWidgets.Renderers.V1
 {
     public class TextRenderer : IRenderer
     {
-        private byte[] buffer;
-        private int bufferPosition = 0;
+        private readonly Stream buffer;
 
         public TextRenderer()
         {
-            buffer = new byte[1024];
+            buffer = new MemoryStream();
             DrawHeader();
         }
 
@@ -66,29 +65,20 @@ namespace SpreadexWidgets.Renderers.V1
         private void WriteStringToBuffer(string data)
         {
             byte[] bytes = Encoding.ASCII.GetBytes(data);
-            int writeSize = bytes.Length;
-            int bytesAvailable = buffer.Length - bufferPosition;
-
-            if (writeSize > bytesAvailable)
-            {
-                throw new OutOfMemoryException(string.Format("Tried to write {0} bytes to buffer, but only had {1} bytes remaining", bytes.Length, bytesAvailable));
-            }
-
-            bytes.CopyTo(buffer, bufferPosition);
-            bufferPosition += bytes.Length;
+            buffer.Write(bytes);
         }
 
         public void Render(Stream stream)
         {
             DrawFooter();
 
-            stream.Write(buffer, 0, bufferPosition);
+            buffer.Seek(0, SeekOrigin.Begin);
+            buffer.CopyTo(stream);
         }
 
         public void Dispose()
         {
-            Array.Clear(buffer, 0, buffer.Length);
-            bufferPosition = 0;
+            buffer.Close();
         }
     }
 }

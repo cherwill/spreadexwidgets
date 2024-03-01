@@ -115,19 +115,6 @@ namespace SpreadexWidgets.Tests.Renderers
         }
 
         [TestMethod]
-        [ExpectedException(typeof(OutOfMemoryException))]
-        public void GivenToManyShapes_ThenThrowOutOfMemoryException()
-        {
-            for(int i=0; i<15; i++)
-            { 
-                renderer.DrawTextbox(new Textbox(15, 16, 17, 18, "Hello World!"));
-            }
-
-            using Stream stream = new MemoryStream();
-            renderer.Render(stream);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
         public void GivenTextboxWithUnsupportedOrientation_ThenThrowNotSupportedException()
         {
