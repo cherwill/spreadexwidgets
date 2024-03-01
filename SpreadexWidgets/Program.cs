@@ -1,6 +1,4 @@
-﻿// TODO - consider adding a flush to the renderer
-
-using SpreadexWidgets.Renderers.V1;
+﻿using SpreadexWidgets.Renderers.V1;
 using SpreadexWidgets.Widgets;
 
 namespace SpreadexWidgets
