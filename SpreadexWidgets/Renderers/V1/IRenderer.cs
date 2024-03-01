@@ -2,7 +2,7 @@
 
 namespace SpreadexWidgets.Renderers.V1
 {
-    public interface IRenderer
+    public interface IRenderer : IDisposable
     {
         void DrawRectangle(Rectangle rectangle);
         void DrawSquare(Square square);

@@ -16,6 +16,12 @@ namespace SpreadexWidgets.Tests.Renderers
             renderer = new TextRenderer();
         }
 
+        [TestCleanup]
+        public void Cleanup()
+        {
+            renderer.Dispose();
+        }
+
         [TestMethod]
         public void GivenRectangle_ThenRenderDrawing()
         {
@@ -109,6 +115,19 @@ namespace SpreadexWidgets.Tests.Renderers
         }
 
         [TestMethod]
+        [ExpectedException(typeof(OutOfMemoryException))]
+        public void GivenToManyShapes_ThenThrowOutOfMemoryException()
+        {
+            for(int i=0; i<15; i++)
+            { 
+                renderer.DrawTextbox(new Textbox(15, 16, 17, 18, "Hello World!"));
+            }
+
+            using Stream stream = new MemoryStream();
+            renderer.Render(stream);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(NotSupportedException))]
         public void GivenTextboxWithUnsupportedOrientation_ThenThrowNotSupportedException()
         {
@@ -117,5 +136,7 @@ namespace SpreadexWidgets.Tests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
         }
+
+        
     }
 }
