@@ -80,16 +80,22 @@ Also include information about the text orientation here.
 
 ### Exclude frames from TextRenderer
 
-Talk about why you would spend more time isolating the frames from the text renderer
+I would have liked to have moved the responsibility of rendering the frame header and footer outside of the text renderer. 
+
+When testing TextRendererTests, we shouldn't be concerend with testing out with the frame header and footer. However, in the current implementation, but we are forced to take this into account due to the nature of how the text is rendered.
 
 ### Output to file
 
-Talk about adding support to output to file
+Given the current implementation of how text is rendered, I would be interested in adapting it to output render data to file.
 
 ### Additional Widgets
 
-Talk about adding additional widgets, such as hexagons, or triangles
+Additional widgets, such as a hexagon or triangle, with rendering support from a V2 Renderer, would be an interesting challenge for me to solve.
 
 ### Improvement to Textbox Construction
 
-Talk about how you would consider using a builder, or config object, to make it more convenient to construct 
+Talk about how you would consider using a builder, or config object, to make it more convenient to construct
+
+After spending some time reflecting on my work, the Textbox constructor looks like it accepts too many arguments. I would be interested in tidying this up by exploring alternative methods of initializing the object. 
+
+Builder pattern and parameter objects are just a couple of ideas that come to mind. 
