@@ -86,7 +86,7 @@ namespace SpreadexWidgets.Tests.Renderers
             using Stream stream = new MemoryStream();
             renderer.Render(stream);
 
-            string expected = TextRendererTestHelper.BuildExpected("Textbox (1,2) width=3 height=4 text=\"sample text\"");
+            string expected = TextRendererTestHelper.BuildExpected("Textbox (1,2) width=3 height=4 Text=\"sample text\"");
             string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);
@@ -108,7 +108,7 @@ namespace SpreadexWidgets.Tests.Renderers
                 "Square (5,6) size=7",
                 "Ellipse (8,9) diameterH = 10 diameterV = 11",
                 "Circle (12,13) size = 14",
-                "Textbox (15,16) width=17 height=18 text=\"Hello World!\"");
+                "Textbox (15,16) width=17 height=18 Text=\"Hello World!\"");
             string actual = TextRendererTestHelper.TextFromStream(stream);
 
             Assert.AreEqual(expected, actual);

@@ -43,7 +43,7 @@ namespace SpreadexWidgets.Renderers.V1
             switch (textbox.Orientation)
             {
                 case Orientation.HORIZONTAL:
-                    var data = string.Format("Textbox ({0},{1}) width={2} height={3} text=\"{4}\"{5}", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text, Environment.NewLine);
+                    var data = string.Format("Textbox ({0},{1}) width={2} height={3} Text=\"{4}\"{5}", textbox.PositionX, textbox.PositionY, textbox.Width, textbox.Height, textbox.Text, Environment.NewLine);
                     WriteStringToBuffer(data);
                     break;
                 default:

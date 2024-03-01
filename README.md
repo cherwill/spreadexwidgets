@@ -54,19 +54,17 @@ This way, we can provide new functionality for those who are looking to adopt th
 
 ### IDisposable
 
-Implementing IDisposable for TextRenderer seemed a justified decision, since this class makes use of a buffer to keep track of what Widgets have been drawn.
+Implementing IDisposable for TextRenderer seemed like a justified decision, since this class makes use of a buffer to keep track of the Widgets that have been drawn.
 
-IDisposable enforces us to implement Dispose, which provides us with a good opportunity to clear and reset the buffer.
+IDisposable enforces us to implement Dispose, which provides us with a good opportunity to close the buffer.
 
 ### Buffer Solution
 
-When a draw request takes place, the renderer pre renders the shape by storing the draw data in the buffer.
+When a draw request takes place, the shape is pre-rendered by storing the draw data in the buffer.
 
-For this, I chose to use a MemoryStream, as it provides dynamic sizing. 
+For this, I chose to use a MemoryStream, as it provides the facility of dynamic sizing. 
 
 ### Exceptions
-
-In circumstances where there isn't enough remaining space in the buffer, an `OutOfMemoryException` is thrown, with a message that provides information for RequestedBytes vs RemainingBytes.
 
 When trying to draw a Textbox using an unsupported orientation, a `NotSupportedException` is thrown, with a message which mentions the orientation in question.
 
@@ -78,7 +76,7 @@ Widgets provided with a negative dimension will throw a `ArgumentOutOfRangeExcep
 
 I would have liked to have moved the responsibility of rendering the frame header and footer outside of the text renderer. 
 
-When testing TextRendererTests, we shouldn't be concerend with testing out with the frame header and footer. However, in the current implementation, but we are forced to take this into account due to the nature of how the text is rendered.
+When testing `TextRendererTests`, we shouldn't be concerned with testing the frame header and footer amongst the resulting stream. However, in the current implementation, but we are forced to take this into account due to the nature of how the text is rendered.
 
 ### Output to file
 
@@ -86,7 +84,7 @@ Given the current implementation of how text is rendered, I would be interested 
 
 ### Additional Widgets
 
-Additional widgets, such as a hexagon or triangle, with rendering support from a V2 Renderer, would be an interesting challenge for me to solve.
+Shapes, such as a hexagon or triangle, with rendering support from a V2 Renderer, would be an interesting challenge for me to solve.
 
 ### Improvement to Textbox Construction
 
