@@ -1,11 +1,9 @@
-# Spreadex Widgets
-
-This project is a coding exercise, which is  to be assessed by Spreadex as required for the job application process.
+#  Widgets
 
 ## Make Commands
-- `make` - Builds and runs `SpreadexWidgets.Tests`.
-- `make run` - Builds and runs the `SpreadexWidgets` Application via the `Program.Main` entrypoint.
-- `make test` - Builds and runs `SpreadexWidgets.Tests`.
+- `make` - Builds and runs `Widgets.Tests`.
+- `make run` - Builds and runs the `Widgets` Application via the `Program.Main` entrypoint.
+- `make test` - Builds and runs `Widgets.Tests`.
 - `make clean` - Cleans the output of the previous build.
 
 ## Design Decisions

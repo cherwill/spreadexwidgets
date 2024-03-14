@@ -1,9 +1,9 @@
 CSC = dotnet
 
 SOLUTION_DIR := .
-PROJECT_DIR := SpreadexWidgets
-TEST_PROJECT_DIR := SpreadexWidgets.Tests
-SOLUTION_FILE := $(SOLUTION_DIR)/SpreadexWidgets.sln
+PROJECT_DIR := Widgets
+TEST_PROJECT_DIR := Widgets.Tests
+SOLUTION_FILE := $(SOLUTION_DIR)/Widgets.sln
 
 all: build test
 
