@@ -1,7 +1,7 @@
 #  Widgets
 
 ## Context
-This C# project acts as a demonstration of using TDD to build an application which pseudo-renders shapes.
+This project is a demo of using TDD to build an application which renders widgets.
 
 ## Make Commands
 - `make` - Builds and runs `Widgets.Tests`.
