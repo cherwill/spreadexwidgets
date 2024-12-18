@@ -1,5 +1,8 @@
 #  Widgets
 
+## Context
+This C# project acts as a demonstration of using TDD to build an application which pseudo-renders shapes.
+
 ## Make Commands
 - `make` - Builds and runs `Widgets.Tests`.
 - `make run` - Builds and runs the `Widgets` Application via the `Program.Main` entrypoint.
@@ -10,7 +13,7 @@
 
 ### Widgets
 
-The Coding Exercise document states that `Widths, heights and diameters must be positive`. In order to satisfy this requirement, I started by writing tests for the validation of the dimensions. The end result is a set of tests for the Widgets that expect an `ArgumentOutOfRangeException` to be thrown when a dimension is negative. 
+`Widths, heights and diameters must be positive`. In order to satisfy this requirement, I started by writing tests for the validation of the dimensions. The end result is a set of tests for the Widgets that expect an `ArgumentOutOfRangeException` to be thrown when a dimension is negative. 
 
 The base class, Widget, specifies properties such as PositionX, PositionY, and Width, which are all used by two or more subclasses.
 
